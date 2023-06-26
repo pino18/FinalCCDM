@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, Text, Image } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { useNavigation } from '@react-navigation/native';
 import LoginScreen from './views/Login';
@@ -32,7 +32,7 @@ export default function App() {
                     options={ ({ navigation }) => ({
                         headerRight: () => (
                             <TouchableOpacity onPress={() => navigation.navigate("Perfil")}>
-                              <Text style={{ marginRight: 10 }}>Perfil</Text>
+                              <Image style={{height:30, width:27, margin:23}} source={require('./Images/user-solid.png')}  />
                             </TouchableOpacity>
                           ),
                         backgroundColor: '#d2d0d0',

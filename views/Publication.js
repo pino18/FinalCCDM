@@ -18,7 +18,7 @@ const PublicationScreen = () => {
   
   const renderPublication = ({ item }) => (
     <View style={styles.publicationContainer}>
-      <Image source={{uri:item.image}} style={styles.publicationImage} resizeMode="stretch" resizeMethod="scale" />
+      <Image source={{uri:item.image}} style={styles.publicationImage} resizeMode="cover" resizeMethod="auto" />
       <View style={styles.publicationContent}>
         <Text style={styles.publicationTitle}>{item.title}</Text>
         <Text style={styles.publicationDescription}>{item.description}</Text>
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   },
   publicationImage: {
     width: 100,
-    height: 100,
+    height: 130,
   },
   publicationContent: {
     flex: 1,

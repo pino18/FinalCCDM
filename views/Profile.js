@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   },
   publicationImage: {
     width: 100,
-    height: 100,
+    height: 130,
   },
   publicationContent: {
     flex: 1,
