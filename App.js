@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { TouchableOpacity, Text, Image } from 'react-native';
+import { TouchableOpacity, Text, Image, View } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { useNavigation } from '@react-navigation/native';
 import LoginScreen from './views/Login';
@@ -31,9 +31,14 @@ export default function App() {
                     component={ PublicationScreen }
                     options={ ({ navigation }) => ({
                         headerRight: () => (
-                            <TouchableOpacity onPress={() => navigation.navigate("Perfil")}>
-                              <Image style={{height:30, width:27, margin:23}} source={require('./Images/user-solid.png')}  />
-                            </TouchableOpacity>
+                            <View style={{flexDirection: 'row'}}>
+                                <TouchableOpacity onPress={() => navigation.navigate("Perfil")}>
+                                    <Image style={{height:30, width:27, marginRight:15}} source={require('./Images/user-solid.png')}  />
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => navigation.navigate("QuickQueue")}>
+                                    <Image style={{height:30, width:30, marginRight:23}} source={require('./Images/logOut.png')}  />
+                                </TouchableOpacity>
+                            </View>
                           ),
                         backgroundColor: '#d2d0d0',
                         title: 'Publicaciones',
@@ -45,14 +50,19 @@ export default function App() {
                 />
                 <Stack.Screen
                     name="Perfil"
-                    options={ {
+                    component={ ProfileScreen }
+                    options={ ({ navigation }) => ({
+                        headerRight: () => (
+                        <TouchableOpacity onPress={() => navigation.navigate("QuickQueue")}>
+                            <Image style={{height:30, width:30, marginRight:23}} source={require('./Images/logOut.png')}  />
+                        </TouchableOpacity>
+                    ),
                         title: 'Perfil',
                         headerTitleStyle: {
                             fontWeight: 'bold',
                             fontSize: 20
-                            }
-                            } }
-                            component={ ProfileScreen }
+                            },
+                            } )}
                 />
             </Stack.Navigator>
         </NavigationContainer>
