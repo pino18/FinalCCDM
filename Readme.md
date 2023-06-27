@@ -16,6 +16,7 @@
 - React Native: Framework utilizado para el desarrollo de la aplicación móvil.
 - Python: Lenguaje de programación utilizado en el backend.
 - FastAPI: Framework de backend utilizado para crear una API rápida y escalable.
+- MongoDB: Sistema de base de datos NoSQL, orientado a documentos y de código abierto.
 
 ## Instalación
 
