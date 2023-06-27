@@ -2,7 +2,7 @@
 
 ![Logo de tu Aplicación](./logoqq.png)
 
-> Breve descripción de tu aplicación.
+> Plataforma especializada para la compra y venta servicios ofrecidos a través de medios digitales
 
 ## Características
 
@@ -31,9 +31,9 @@
    - Ejecuta el backend: `uvicorn app:app --reload`
 
 2. Configura el frontend:
-   - Ve al directorio `frontend`: `cd frontend`
+   - Ve al directorio `QuickQ-FrontEnd`: `cd QuickQ-FrontEnd`
    - Instala las dependencias: `npm install` o `yarn install`
-   - Inicia la aplicación: `npm start` o `yarn start`
+   - Inicia la aplicación: `npx expo start`
 
 ## Sobre el Despliegue
 
