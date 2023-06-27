@@ -1,37 +1,41 @@
 import React,{useState, useEffect} from 'react';
 import { View, Image, Text, StyleSheet, FlatList } from 'react-native';
+import { connect } from 'react-redux';
 
-const ProfileScreen = () => {
+const ProfileScreen = ({ user }) => {
+  console.log("User:", user);
   const [profileScreen, setProfileScreen] = useState([]);
   const [profileInfo, setProfileInfo] = useState([]);
 
   useEffect(() => {
-    fetch('https://quickq.onrender.com/post/Victoria Mosquera')
-    .then(response => response.json())
-    .then(data => {
-      setProfileScreen(data)
-    })
-    .catch(error => {
-      console.log(error);
-    });
-  }, []);
+    const fetchData = async () => {
+      try {
+        const email = user.email;
+        const profileResponse = await fetch(
+          `https://quickq.onrender.com/profile/${email}`
+        );
+        const profileData = await profileResponse.json();
+        setProfileInfo(profileData);
 
-  useEffect(() => {
-    fetch('https://quickq.onrender.com/profile/1')
-    .then(response => response.json())
-    .then(data => {
-      setProfileInfo(data)
-    })
-    .catch(error => {
-      console.log(error);
-    });
-  }, []);
+        const profileName = profileData.name;
+        const postResponse = await fetch(
+          `https://quickq.onrender.com/post/${profileName}`
+        );
+        const postData = await postResponse.json();
+        setProfileScreen(postData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [user.email]);
 
   const profileImage = profileInfo.image; // Ruta de la imagen de perfil
 
   const rating = profileInfo.rate; // Calificación
 
-  const name = profileInfo.name; // Nombre de la persona
+  const name = profileInfo?.name;
 
   const renderPublication = ({ item }) => (
     <View style={styles.publicationContainer}>
@@ -148,4 +152,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProfileScreen;
+const mapStateToProps = (state) => ({
+  user: state.login.user,
+});
+
+export default connect(mapStateToProps)(ProfileScreen);
