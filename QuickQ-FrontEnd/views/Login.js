@@ -2,8 +2,10 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet, Text, Image, Alert, Pressable, Linking, TouchableOpacity } from 'react-native';
 import axios from 'axios';
+import { connect,useDispatch } from 'react-redux';
+import { setUser } from '../redux/actions.js';
 
-const LoginScreen = ({navigation}) => {
+const LoginScreen = ({navigation, setUser}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -11,6 +13,8 @@ const LoginScreen = ({navigation}) => {
     try {
       const route = `https://quickq.onrender.com/login/${email}/${password}`;
       const response = await axios.get(route);
+      console.log(response.data)
+      setUser(response.data)
       return typeof response.data;
     } catch(error){
       console.log(error);
@@ -127,4 +131,8 @@ const styles = StyleSheet.create({
     }
 });
 
-export default LoginScreen;
+const mapDispatchToProps = (dispatch) => ({
+  setUser: (user) => dispatch(setUser(user)),
+});
+
+export default connect(null, mapDispatchToProps)(LoginScreen);

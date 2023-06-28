@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { TouchableOpacity, Text, Image, View } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
-import { useNavigation } from '@react-navigation/native';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 import LoginScreen from './views/Login';
 import ProfileScreen from './views/Profile';
 import PublicationScreen from './views/Publication';
+
 
 
 
@@ -13,6 +15,8 @@ const Stack = createStackNavigator();
 
 export default function App() {
     return (
+        <Provider store={store}>
+        
         <NavigationContainer>
             <Stack.Navigator
                 initialRouteName="Inicio"
@@ -25,7 +29,9 @@ export default function App() {
                 <Stack.Screen
                     name="QuickQueue"
                     component={ LoginScreen }
+                    
                 />
+                
                 <Stack.Screen
                     name="PublicacionesPosts"
                     component={ PublicationScreen }
@@ -40,7 +46,7 @@ export default function App() {
                                 </TouchableOpacity>
                             </View>
                           ),
-                        backgroundColor: '#d2d0d0',
+                        backgroundColor: '#d2d0d1',
                         title: 'Publicaciones',
                         headerTitleStyle: {
                             fontWeight: 'bold',
@@ -66,6 +72,7 @@ export default function App() {
                 />
             </Stack.Navigator>
         </NavigationContainer>
+        </Provider>
     );
 }
 
