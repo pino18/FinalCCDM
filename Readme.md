@@ -4,6 +4,12 @@
 
 > Plataforma especializada para la compra y venta servicios ofrecidos a través de medios digitales
 
+## Integrantes
+
+- Juan David Pino Ramirez
+- Kevin Danilo Arias Buitrago 
+- Marlon David Valencia Pandales
+
 ## Características
 
 - Pantalla Login
